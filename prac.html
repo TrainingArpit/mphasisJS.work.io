@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <h1>Calculator ULTRA MIN function</h1>
+    
+    
+    <form id="calculator">
+        <label for="number1" >Number:1</label>
+        <input class="number "type="number" id="number1"name='number1' placeholder="enter first number"><br><br>
+        <label for ="number2">Number:2</label>
+        <input class="number"type="number" id="number2"nam ='number2' placeholder="enter second number"><br><br>
+        
+    </form>
+    <button class="btn btn-warning" id="Add" onclick="addNumbers()">Add</button>
+    
+    <button class="btn btn-info"id="Sub" onclick="subtractNumbers()">Subtract</button>
+    
+    <button class="btn btn-success"id="Multiply" onclick="multiplynumbers()">Multiply</button> 
+   
+    <button class="btn btn-secondary"id="Divide" onclick="dividenumbers()">Divide</button>  <br><br> 
+   
+    <button class="btn btn-danger" id="clear" onclick="clearOutput()">Clear</button><br><br> 
+    <h3 id="output"></h3>
+   
+</body>
+<script>
+    function dividenumbers() {
+        const number1 = parseFloat(document.getElementById('number1').value);
+        const number2 = parseFloat(document.getElementById('number2').value);
+        const div = number1 / number2 ;
+        document.getElementById('output').textContent = `Div: ${div}`;
+    }
+</script>
+<script>
+    function addNumbers() {
+        const number1 = parseFloat(document.getElementById('number1').value);
+        const number2 = parseFloat(document.getElementById('number2').value);
+        const sum = number1 + number2 ;
+        document.getElementById('output').textContent = `Sum: ${sum}`;
+    }
+</script>
+<script>
+    function subtractNumbers(){
+        const number1 = parseFloat(document.getElementById('number1').value);
+        const number2 = parseFloat(document.getElementById('number2').value);
+        const sub = number1 - number2 ;
+        document.getElementById('output').textContent = `Subtract: ${sub}`;
+    }
+</script>
+<script>
+    function multiplynumbers(){
+        const number1 =parseFloat(document.getElementById('number1').value);
+        const number2 =parseFloat(document.getElementById('number2').value);
+        const mult=number1 * number2;
+        document.getElementById('output').textContent = `Multiply: ${mult}`;     
+    }
+</script>
+<script>
+    function clearOutput() {
+        document.getElementById('output').textContent = '';
+        document.getElementById('number1').value = '';
+        document.getElementById('number2').value = '';
+    }
+</script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>

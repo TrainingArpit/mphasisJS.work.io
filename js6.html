@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body{
+        padding-top:70px;
+    }
+</style>
+<body>
+    <form> 
+    <fieldset class="form bg-dark text-white h-50 w-50 m-auto mt-5 p-4" style="border-radius: 10px;">
+            <h3>Guest Form</h3>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="checkin">Checkin:</label>
+            <input type="date" id="checkin" name="checkin" required><br><br>
+            <label for="checkout">Checkout:</label>
+            <input type="date" id="checkout" name="checkout"><br><br>
+    </fieldset>
+</form>
+<hr>
+<form> 
+    <fieldset class="form bg-dark text-white h-50 w-50 m-auto mt-5 p-4" style="border-radius: 10px;">
+        <h3>Check Room Availability</h3>
+        <input type="text" id="room" name="room" disabled><br><br>
+        <input type="button" value="Check" id="checkAvailability">
+    </fieldset>
+</form>
+<hr>
+    <form> 
+        <fieldset class="form bg-dark text-white h-50 w-50 m-auto mt-5 p-4" style="border-radius: 10px;">
+                <h3>Calculate Total Bookings</h3>
+                <label for="Room">Room Type:</label>
+                <select id="roomType" name="roomType">
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="suite">Suite</option>
+                </select><br><br>
+                <label for="nights">Number of Nights:</label>
+                <input type="text" id="numnights" name="nights" ><br><br>
+                <label for="nights">Total night:</label>
+                <input type="text" id="totalnights" disabled><br><br>
+                <input type="button" id="calculate" value="Calculate" ><br><br>
+                <input type="button" id="confirm" value="Confirm booking" style="float: right;"><br><br>
+        </fieldset>
+    </form>
+    </form>
+
+    <script>
+        let availabilityCounter = 0;
+
+        document.getElementById('checkAvailability').addEventListener('click', function() {
+            const roomInput = document.getElementById('room');
+            const confirmButton = document.getElementById('confirm');
+            if (availabilityCounter < 5) {
+            roomInput.value = "Yes";
+            confirmButton.style.display = 'block'; // Show the confirm button
+            } else {
+            roomInput.value = "No";
+            confirmButton.style.display = 'none'; // Hide the confirm button
+            availabilityCounter = -1; 
+            }
+            availabilityCounter++;
+        });
+        document.getElementById('confirm').addEventListener('click', function() {
+            alert('Booking is confirmed!');
+        });
+        document.getElementById('calculate').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const roomType = document.getElementById('roomType').value;
+            const nights = parseInt(document.getElementById('numnights').value, 10);
+            const totalCost = document.getElementById('totalnights');
+            let costPerNight = 0;
+
+            if (roomType === 'single') {
+                costPerNight = 3000;
+            } else if (roomType === 'double') {
+                costPerNight = 10000;
+            } else if (roomType === 'suite') {
+                costPerNight = 100000;
+            }
+
+            if (!isNaN(nights) && nights > 0) {
+                const total = nights * costPerNight;
+                totalCost.value = total;
+            } else {
+                totalCost.value = "Invalid input";
+            }
+        });
+        document.getElementById('confirm').style.display = 'none';
+            
+    </script>
+    </body>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

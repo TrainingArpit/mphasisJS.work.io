@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" oninput="calculateHRA()"><br><br>
+        <label for="hra">HRA 30%:</label>
+        <input type="number" id="hra" name="hra" readonly><br><br>
+        <script>
+            function calculateHRA() {
+            const salary = document.getElementById('salary').value;
+            const hra = salary * 0.3;
+            document.getElementById('hra').value = hra || 0;
+            }
+        </script>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <label for="number">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for ="number" >Symptoms:</label>
+        <textarea ></textarea><br><br>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Student Performance Checker</h1>
+    <p>Enter the scores of three subjects to check if the student has passed or failed.</p>
+    <form onsubmit="event.preventDefault(); displayResult();">
+        <label for="score1">Score 1:</label>
+        <input type="number" id="score1" required>
+        <br>
+        <label for="score2">Score 2:</label>
+        <input type="number" id="score2" required>
+        <br>
+        <label for="score3">Score 3:</label>
+        <input type="number" id="score3" required>
+        <br>
+        <button type="submit">Check Performance</button>
+    </form>
+    <p id="output"></p>
+    <script>
+        function displayResult() {
+            const score1 = parseFloat(document.getElementById('score1').value);
+            const score2 = parseFloat(document.getElementById('score2').value);
+            const score3 = parseFloat(document.getElementById('score3').value);
+            const result = checkStudentPerformance(score1, score2, score3);
+            document.getElementById('output').textContent = result;
+        }
+    </script>
+    <script>
+        function checkStudentPerformance(score1,score2,score3){
+            let average = (score1 + score2 + score3) / 3;
+            let result=average >= 50 ? "Pass" : "Failed";
+            return `Average: ${average.toFixed(2)}, Result: ${result}`;
+        }
+    </script>
+</body>
+</html>
