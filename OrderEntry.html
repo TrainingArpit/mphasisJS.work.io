@@ -7,7 +7,79 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    body{
+        padding-top: 70px;
+    }
+   
+    </style>
 <body>
    
+    <form class="form "> 
+        <fieldset class="form bg-info text-white h-50 w-50 m-auto mt-5 p-4" style="border-radius: 10px;">
+                <h3>Order Entry</h3>
+                <label for="customer">Customer:</label>
+                <select id="customer" name="customer">
+                    <option >select</option>
+                    <option >customer01</option>
+                    <option >customer02</option>
+                    <option >customer03</option>
+                    <option >customer04</option>
+                    <option >customer05</option>
+                </select><br><br>
+                <label for="product">Product:</label>
+                <select id="product" name="product">
+                    <option >select</option>
+                    <option >product01</option>
+                    <option >product02</option>
+                    <option >product03</option>
+                    <option >product04</option>
+                    <option>product05</option>
+                </select><br><br>
+                <label for="quantity">Quantity:</label>
+                <select id="quantity" name="quantity">
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>
+                </select><br><br>
+                <label for="discount">Discount:</label>
+                    <input type="text" id="discount" name="discount"><br><br>
+                <label for="t-price">T-Price:</label>
+                <input type="text" id="t-price" name="t-price" disabled><br><br>
+                <label for="D-price">D-Price:</label>
+                <input type="text" id="d-price" name="d-price" disabled><br><br>
+                <input class="button float-right" type="button" value="Place Order">
+        </fieldset>
+    </form>
+    <script>
+document.querySelector('.button').addEventListener('click', function () {
+    const productPrices = {
+        product01: 4200,
+        product02: 2040,
+        product03: 3050,
+        product04: 5080,
+        product05: 1622
+    };
+
+    const product = document.getElementById('product').value;
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const discount = parseFloat(document.getElementById('discount').value) || 0;
+
+    if (productPrices[product] && quantity > 0) {
+        const totalPrice = productPrices[product] * quantity;
+        const discountedPrice = totalPrice - (totalPrice * (discount / 100));
+
+        document.getElementById('t-price').value = totalPrice.toFixed(2);
+        document.getElementById('d-price').value = discountedPrice.toFixed(2);
+    } else {
+        alert('Please select a valid product and quantity.');
+    }
+});
+    </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
