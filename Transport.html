@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        select, button, input {
+            margin: 10px 0;
+        }
+        .booking-details {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 20px;
+            width: fit-content;
+        }
+        .booking-details label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Transport Details</h2>
+
+    <label for="vendor">Vendor:</label>
+    <input type="text" id="vendor" placeholder="Enter vendor name"><br>
+
+    <label for="path">Path:</label>
+    <input type="text" id="path" placeholder="Enter path (e.g., Delhi to Mumbai)"><br>
+
+    <label for="speed">Speed:</label>
+    <input type="text" id="speed" readonly><br>
+
+    <label for="transportType">Select Transport Type:</label>
+    <select id="transportType" onchange="updateSpeed()">
+        <option value="flight">Flight</option>
+        <option value="truck">Truck</option>
+        <option value="train">Train</option>
+    </select><br>
+
+    <button id="book" onclick="Book()">Book</button>
+
+    <div id="bookingOutput" class="booking-details" style="display: none;">
+        <p><label>Transport Type:</label> <span id="bookType"></span></p>
+        <p><label>Vendor:</label> <span id="bookVendor"></span></p>
+        <p><label>Speed:</label> <span id="bookSpeed"></span></p>
+        <p><label>Path:</label> <span id="bookPath"></span></p>
+        <p id="extraDetail"></p>
+    </div>
+
+    <script>
+        // Parent class
+        class Transport {
+            constructor(type, vendor, speed, path) {
+                this.type = type; // Type of transport
+                this.vendor = vendor; // Vendor of the transport
+                this.speed = speed; // Speed of the transport
+                this.path = path; // Path of the transport
+            }
+        }
+
+        // Flight class inheriting from Transport
+        class Flight extends Transport {
+            constructor(type, vendor, speed, path, weight) {
+                super(type, vendor, speed, path); // Call the parent class constructor
+                this.weight = weight; // Weight of the flight
+            }
+        }
+
+        // Truck class inheriting from Transport
+        class Truck extends Transport {
+            constructor(type, vendor, speed, path, capacity) {
+                super(type, vendor, speed, path); // Call the parent class constructor
+                this.capacity = capacity; // Capacity of the truck
+            }
+        }
+
+        // Train class inheriting from Transport
+        class Train extends Transport {
+            constructor(type, vendor, speed, path, coaches) {
+                super(type, vendor, speed, path); // Call the parent class constructor
+                this.coaches = coaches; // Number of coaches in the train
+            }
+        }
+
+        // Function to update speed based on selected transport type
+        function updateSpeed() {
+            const transportType = document.getElementById("transportType").value;
+            const speedInput = document.getElementById("speed");
+
+            if (transportType === "flight") {
+                speedInput.value = "900 km/h";
+            } else if (transportType === "truck") {
+                speedInput.value = "80 km/h";
+            } else if (transportType === "train") {
+                speedInput.value = "120 km/h";
+            }
+        }
+
+        // Function to display booking details
+        function Book() {
+            const transportType = document.getElementById("transportType").value;
+            const vendor = document.getElementById("vendor").value;
+            const path = document.getElementById("path").value;
+            const speed = document.getElementById("speed").value;
+
+            if (vendor.trim() === "" || path.trim() === "") {
+                alert("Please fill in all the details before booking.");
+                return;
+            }
+
+            // Populate booking details
+            document.getElementById("bookType").textContent = transportType;
+            document.getElementById("bookVendor").textContent = vendor;
+            document.getElementById("bookSpeed").textContent = speed;
+            document.getElementById("bookPath").textContent = path;
+
+            // Show extra details based on transport type
+            const extraDetail = document.getElementById("extraDetail");
+            if (transportType === "flight") {
+                extraDetail.innerHTML = `<label>Weight:</label> 50 tons`;
+            } else if (transportType === "truck") {
+                extraDetail.innerHTML = `<label>Capacity:</label> 20 tons`;
+            } else if (transportType === "train") {
+                extraDetail.innerHTML = `<label>Coaches:</label> 15 coaches`;
+            }
+
+            // Display the booking details section
+            document.getElementById("bookingOutput").style.display = "block";
+        }
+
+        // Initialize speed on page load
+        window.onload = updateSpeed;
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Inheritance</title>
+</head>
+<body>
+    <p id="output1">Honda Bike Object:</p>
+    <p id="output2">Suzuki Bike Object:</p>
+    <script>
+        
+        class Bike {
+            constructor(gears) {
+                this.gears = gears;
+            }
+        }
+
+       
+        class Honda extends Bike {
+            constructor(gears, model) {
+                super(gears); 
+                this.model = model;
+            }
+        }
+
+        class Suzuki extends Bike {
+            constructor(gears, model) {
+                super(gears); 
+                this.model = model;
+            }
+        }
+
+
+        const hondaBike = new Honda(5, "CBR 500R");
+        const suzukiBike = new Suzuki(6, "GSX-R750");
+
+        document.getElementById("output1").textContent = `Honda Bike Object: Gears = ${hondaBike.gears}, Model = ${hondaBike.model}`;
+        document.getElementById("output2").textContent = `Suzuki Bike Object: Gears = ${suzukiBike.gears}, Model = ${suzukiBike.model}`;
+    </script>
+</body>
+</html>
+</body>
+</html>
