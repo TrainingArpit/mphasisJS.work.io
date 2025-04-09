@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="customerForm">
+        
+        <h2>Customer</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br><br>
+
+        <label for="mobile">Mobile:</label>
+        <input type="tel" id="mobile" name="mobile" required><br><br>
+
+        <label for="localCustomer">Local Customer:</label>
+        <input type="checkbox" id="localCustomer" name="localCustomer"><br><br>
+
+        <input type="button" value="Add" onclick="recordData()">
+    
+    </form>
+    <script>
+function recordData() {
+    var name = document.getElementById('name').value;
+    var age = document.getElementById('age').value;
+    var dob = document.getElementById('dob').value;
+    var mobile = document.getElementById('mobile').value;
+    var checkbox = document.getElementById('localCustomer').checked;
+
+    // Create a new Customer object
+    var data = new Customer(name, age, dob, mobile, checkbox);
+
+    // Display the data in the alert
+    alert(
+        "Name: " + data.name + "\nAge: " + data.age + "\nDOB: " + data.dob + 
+        "\nMobile: " + data.mobile + "\nLocal Customer: " + data.localCustomer
+    );
+
+    // Update the fieldset with the data
+    document.getElementById("displayName").innerHTML = "Name: " + data.name;
+    document.getElementById("displayAge").innerHTML = "Age: " + data.age;
+    document.getElementById("displayDate").innerHTML = "Date: " + data.dob;
+    document.getElementById("displayMobile").innerHTML = "Mobile: " + data.mobile;
+    document.getElementById("displayLocalCustomer").innerHTML = "Local Customer: " + data.localCustomer;
+}
+
+// Constructor
+class Customer {
+    constructor(name, age, dob, mobile, localCustomer) {
+        this.name = name;
+        this.age = age;
+        this.dob = dob;
+        this.mobile = mobile;
+        this.localCustomer = localCustomer;
+    }
+}
+        
+    </script>
+        <span id="displayName">Name:</span><br><br>
+        <span id="displayAge">Age:</span><br><br>
+        <span id="displayDate">Date:</span><br><br>
+        <span id="displayMobile">Mobile:</span><br><br>
+        <span id="displayLocalCustomer">Local Customer:</span>
+    
+    </form>
+</fieldset>
+</body>
+</html>
